@@ -4,6 +4,7 @@ import glob
 import zipfile
 import argparse
 
+# python data_select.py --temp temp --whole whole --current ./
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--temp", type=str, default="temp", help='path to save temporary zip files')
 ap.add_argument("-w", "--whole", type=str, default="whole", help="path to save whole train files")
@@ -37,8 +38,11 @@ def main():
     if targetpath not in os.listdir():
         os.mkdir(targetpath)
     
+    # the number of zip files
+    zipcount = len(glob.glob1(directory,"*.zip"))
+
     # 디렉터리 내에 있는 모든 zip 파일을
-    for zf in glob.glob('*.zip'):
+    for i, zf in enumerate(glob.glob('*.zip'), 1):
         pathlist = []
         zipname = zf.split('.')[0]  # zip 파일 이름 
         
@@ -57,8 +61,10 @@ def main():
         # temp 디렉터리에 저장한 추출한 이미지 파일을 whole 디렉터리에 옮겨줌        
         for path, pname in pathlist:
             shutil.move(os.path.join(basepath, path), os.path.join(targetpath, pname))
-            print(path, pname)
+            # print(path, pname)
         
+        print(f"Selected pre-defined image files from {zipname}.zip({i}/{zipcount})")
+
         # temp 디렉터리에 있는 쓰지 않는 디렉터리 및 파일 제거
         for dir in os.listdir(basepath):
             dpath = os.path.join(basepath, dir)
