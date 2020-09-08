@@ -7,38 +7,24 @@ import numpy as np
 
 video_capture = cv2.VideoCapture(0)
 
-# 얼굴 이미지 읽어들인 후 얼굴에 대한 embedding 학습
-obama_image = face_recognition.load_image_file("data/obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
-# Load a second sample picture and learn how to recognize it.
-biden_image = face_recognition.load_image_file("data/biden.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
-
-june_image = face_recognition.load_image_file("data/june.jpg")
+####################################################################
+# 수정할 부분
+# load_image_file("본인 사진 경로")
+june_image = face_recognition.load_image_file("june.jpg")
 june_face_encoding = face_recognition.face_encodings(june_image)[0]
 
-# kihong_image = face_recognition.load_image_file("kihong.jpg")
-# kihong_face_encoding = face_recognition.face_encodings(kihong_image)[0]
-
-# hyejeong_image = face_recognition.load_image_file("hyejung.jpg")
-# hyejeong_face_encoding = face_recognition.face_encodings(hyejeong_image)[0]
 
 # face encodding이 저장된 변수 리스트
 known_face_encodings = [
-    obama_face_encoding,
-    biden_face_encoding,
     june_face_encoding,
-    # kihong_face_encoding,
-    # hyejeong_face_encoding
 ]
 
+
+# 수정할 부분
+# "본인이름" => 본인 이름으로 수정
 known_face_names = [
-    "Barack Obama",
-    "Joe Biden",
-    "JuneHyoung Kwon",
-    # "Kihong Kwon",
-    # "Hyejeong Chung"
+    "June",
 ]
 
 
